@@ -38,7 +38,7 @@ def buyStock(ticker):
     rsi = getRSIList(ticker)
     price_bought = r.stocks.get_latest_price(ticker)
     if float (rsi) < 30:
-        r.orders.order_sell_market(ticker, 1, timeInForce='gtc', 
+        r.orders.order_buy_market(ticker, 1, timeInForce='gtc', 
                                    extendedHours=False, jsonify=False)
         print(f"Currently bought: {ticker} for {price_bought} at RSI: {rsi}")
     else:
@@ -49,7 +49,7 @@ def sellStock(ticker):
     #Need to include check if stock is in portfolio - no short selling
     price_sold = r.stocks.get_latest_price(ticker)
     if float (rsi) > 70:
-        r.orders.order_buy_market(ticker, 1, timeInForce='gtc',
+        r.orders.order_sell_market(ticker, 1, timeInForce='gtc',
                                   extendedHours=False, jsonify=False)
         print(f"Currently sold: {ticker} for {price_sold} at RSI: {rsi}")
     else:
